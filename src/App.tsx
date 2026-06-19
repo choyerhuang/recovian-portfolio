@@ -121,7 +121,11 @@ function App() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="relative mt-14 min-h-[430px] w-full max-w-[420px] justify-self-center lg:mt-0 lg:max-w-none"
+          drag
+          dragElastic={0.06}
+          dragMomentum={false}
+          whileTap={{ scale: 0.985 }}
+          className="relative mt-14 min-h-[430px] w-full max-w-[420px] cursor-grab touch-none select-none justify-self-center active:cursor-grabbing lg:mt-0 lg:max-w-none"
         >
           <div className="absolute left-8 top-8 h-64 w-64 rounded-full bg-rec-blue/20 blur-3xl" />
           <div className="absolute bottom-12 right-6 h-72 w-72 rounded-full bg-rec-violet/18 blur-3xl" />
