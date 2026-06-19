@@ -74,7 +74,7 @@ function App() {
 
       <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-6 sm:px-8">
         <a className="font-mono text-xs uppercase tracking-[0.34em] text-rec-pearl" href="#top">
-          recovian.ai
+          Recovian Labs
         </a>
         <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.28em] text-rec-steel md:flex">
           <a className="transition hover:text-rec-bone" href="#projects">
@@ -89,14 +89,14 @@ function App() {
         </nav>
       </header>
 
-      <section id="top" className="relative mx-auto grid min-h-[calc(100vh-84px)] max-w-7xl px-5 pb-16 pt-8 sm:px-8 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-12">
+      <section id="top" className="relative mx-auto grid min-h-[calc(100vh-84px)] max-w-7xl px-5 pb-16 pt-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-center lg:gap-10 xl:grid-cols-[minmax(0,1fr)_400px]">
         <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.12 }}>
           <motion.p variants={fadeUp} className="mb-5 font-mono text-xs uppercase tracking-[0.38em] text-rec-blue">
             Portfolio / AI Lab / Digital Atelier
           </motion.p>
           <motion.h1
             variants={fadeUp}
-            className="max-w-5xl text-[clamp(4.7rem,16vw,13rem)] font-black uppercase leading-[0.76] text-rec-bone"
+            className="max-w-5xl text-[clamp(4.7rem,12vw,10.8rem)] font-black uppercase leading-[0.76] text-rec-bone"
           >
             Recovian
           </motion.h1>
@@ -121,7 +121,7 @@ function App() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="relative mt-14 min-h-[430px] lg:mt-0"
+          className="relative mt-14 min-h-[430px] w-full max-w-[420px] justify-self-center lg:mt-0 lg:max-w-none"
         >
           <div className="absolute left-8 top-8 h-64 w-64 rounded-full bg-rec-blue/20 blur-3xl" />
           <div className="absolute bottom-12 right-6 h-72 w-72 rounded-full bg-rec-violet/18 blur-3xl" />
@@ -144,19 +144,19 @@ function App() {
               ))}
             </div>
             <div className="mt-16 grid grid-cols-2 gap-3">
-              <div className="border border-white/12 bg-black/28 p-4">
-                <TerminalSquare className="mb-8 h-5 w-5 text-rec-blue" />
+              <div className="min-w-0 border border-white/12 bg-black/28 p-4">
+                <TerminalSquare className="mb-7 h-5 w-5 text-rec-blue" />
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-rec-steel">
                   Build Mode
                 </p>
-                <p className="mt-2 text-2xl font-semibold">Agentic</p>
+                <p className="mt-2 text-xl font-semibold leading-tight sm:text-2xl lg:text-xl xl:text-2xl">Agentic</p>
               </div>
-              <div className="border border-white/12 bg-black/28 p-4">
-                <Sparkles className="mb-8 h-5 w-5 text-rec-violet" />
+              <div className="min-w-0 border border-white/12 bg-black/28 p-4">
+                <Sparkles className="mb-7 h-5 w-5 text-rec-violet" />
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-rec-steel">
                   Studio Signal
                 </p>
-                <p className="mt-2 text-2xl font-semibold">Futures</p>
+                <p className="mt-2 text-xl font-semibold leading-tight sm:text-2xl lg:text-xl xl:text-2xl">Futures</p>
               </div>
             </div>
           </div>
@@ -244,12 +244,12 @@ function App() {
       <footer className="border-t border-white/10 px-5 py-8 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-steel">
-            Recovian / recovian.ai
+            Recovian Labs / recovian.ai
           </p>
           <div className="flex flex-wrap gap-3">
-            <FooterLink icon={Github} label="GitHub" href="https://github.com/your-handle" />
-            <FooterLink icon={Linkedin} label="LinkedIn" href="https://linkedin.com/in/your-handle" />
-            <FooterLink icon={Mail} label="Email" href="mailto:hello@recovian.ai" />
+            <FooterLink icon={Github} label="GitHub" href="https://github.com/choyerhuang" />
+            <FooterLink icon={Linkedin} label="LinkedIn" href="https://www.linkedin.com/in/ihanghuang/" />
+            <FooterLink icon={Mail} label="Email" href="mailto:choyerhuang@gmail.com" />
             <FooterLink icon={ArrowRight} label="Resume" href="#" />
           </div>
         </div>
