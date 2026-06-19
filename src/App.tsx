@@ -2,6 +2,7 @@ import {
   ArrowRight,
   BrainCircuit,
   Cpu,
+  ExternalLink,
   Github,
   Layers3,
   Linkedin,
@@ -19,8 +20,9 @@ const projects = [
     title: "NCHC Agent Backend",
     category: "Agent Infrastructure",
     description:
-      "A backend architecture for planner-driven AI agents, service orchestration, and production-minded tool execution.",
-    tags: ["Django", "Python", "Agents", "APIs"]
+      "A disaster-response agent platform foundation combining Graph RAG governance, multimodal task loops, and controlled automation.",
+    tags: ["Graph RAG", "Agentic Loop", "Automation", "Backend"],
+    href: "#nchc-platform"
   },
   {
     title: "OpenClaw Integration",
@@ -34,21 +36,51 @@ const projects = [
     category: "Applied ML",
     description:
       "Transforms unstructured clinical notes into structured data for downstream review and ML-assisted workflows.",
-    tags: ["NLP", "RAG", "Healthcare", "Data UX"]
+    tags: ["NLP", "RAG", "Healthcare", "Data UX"],
+    href: "https://github.com/choyerhuang/clinical-note-structuring-tool"
   },
   {
     title: "OpenWebUI Deployment",
     category: "Self-hosted AI",
     description:
       "Local and cloud-connected AI interface deployment with tunnels, model endpoints, and secure operational patterns.",
-    tags: ["OpenWebUI", "Cloudflare", "Docker", "LLM Ops"]
+    tags: ["OpenWebUI", "Cloudflare", "Docker", "LLM Ops"],
+    href: "https://webui.recovian.ai/"
   },
   {
     title: "Future Game Lab",
     category: "Interactive Experiments",
     description:
-      "A future shelf for playable systems, narrative prototypes, world interfaces, and AI-assisted game mechanics.",
-    tags: ["Game Lab", "Prototype", "Systems", "Unity"]
+      "A home for playable systems, economy prototypes, narrative interfaces, and AI-assisted game experiments.",
+    tags: ["Game Lab", "Prototype", "Systems", "Web Game"],
+    href: "https://choyerhuang.github.io/toMonolopy_GoldMilestone/"
+  }
+];
+
+const platformModules = [
+  {
+    index: "00",
+    title: "Graph RAG Knowledge Governance",
+    detail:
+      "Scalable knowledge management pipeline for disaster-response AI agents, designed around governed retrieval and reusable domain memory."
+  },
+  {
+    index: "01",
+    title: "Multimodal Task-Oriented Agents",
+    detail:
+      "Agentic loop architecture that moves beyond Q&A into multimodal task execution, routing, and context-aware tool use."
+  },
+  {
+    index: "02",
+    title: "Controlled Execution Framework",
+    detail:
+      "Automation layer for operational workflows, keeping agent actions structured, inspectable, and bounded."
+  },
+  {
+    index: "03",
+    title: "Mandarin System Output",
+    detail:
+      "Mandarin-first response surface for practical deployment scenarios and human review workflows."
   }
 ];
 
@@ -171,8 +203,11 @@ function App() {
         <SectionLabel title="Featured Projects" code="01 / Selected Work" />
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
-            <motion.article
+            <motion.a
               key={project.title}
+              href={project.href}
+              target={project.href?.startsWith("http") ? "_blank" : undefined}
+              rel={project.href?.startsWith("http") ? "noreferrer" : undefined}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -183,7 +218,11 @@ function App() {
                 <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
                   {project.category}
                 </p>
-                <ArrowRight className="h-4 w-4 text-rec-steel transition group-hover:translate-x-1 group-hover:text-rec-bone" />
+                {project.href?.startsWith("http") ? (
+                  <ExternalLink className="h-4 w-4 text-rec-steel transition group-hover:translate-x-1 group-hover:text-rec-bone" />
+                ) : (
+                  <ArrowRight className="h-4 w-4 text-rec-steel transition group-hover:translate-x-1 group-hover:text-rec-bone" />
+                )}
               </div>
               <h3 className="text-3xl font-semibold leading-tight text-white">{project.title}</h3>
               <p className="mt-5 text-sm leading-7 text-rec-pearl">{project.description}</p>
@@ -194,9 +233,42 @@ function App() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+            </motion.a>
           ))}
         </div>
+
+        <motion.div
+          id="nchc-platform"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          className="mt-6 border border-white/12 bg-white/[0.035] p-5 backdrop-blur-2xl sm:p-7"
+        >
+          <div className="flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
+                NCHC Agent Platform
+              </p>
+              <h3 className="mt-4 max-w-4xl text-3xl font-black uppercase leading-none text-white md:text-5xl">
+                Disaster-response AI agent backend
+              </h3>
+            </div>
+            <p className="max-w-md text-sm leading-7 text-rec-pearl">
+              Portfolio content adapted from the uploaded AI Agent Platform deck, translated into a compact system map for the Recovian interface.
+            </p>
+          </div>
+          <div className="mt-6 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 xl:grid-cols-4">
+            {platformModules.map((module) => (
+              <div key={module.title} className="bg-rec-black p-5">
+                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
+                  Module {module.index}
+                </p>
+                <h4 className="mt-8 text-xl font-semibold leading-tight text-white">{module.title}</h4>
+                <p className="mt-4 text-sm leading-7 text-rec-pearl">{module.detail}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       <section id="systems" className="border-y border-white/10 bg-white/[0.025] py-24">
