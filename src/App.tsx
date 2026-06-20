@@ -69,70 +69,80 @@ const publications = [
     authors: "JH Wang, GF Lin, MJ Chang, IH Huang, YR Chen",
     venue: "Water Resources Management 33 (11), 3759-3780",
     citations: "80",
-    year: "2019"
+    year: "2019",
+    href: "https://link.springer.com/article/10.1007/s11269-019-02342-4"
   },
   {
     title: "Gap-filling of surface fluxes using machine learning algorithms in various ecosystems",
     authors: "IH Huang, CI Hsieh",
     venue: "Water 12 (12), 3415",
     citations: "24",
-    year: "2020"
+    year: "2020",
+    href: "https://www.mdpi.com/2073-4441/12/12/3415"
   },
   {
     title: "Application of hybrid machine learning model for flood hazard zoning assessments",
     authors: "JH Wang, GF Lin, YR Huang, IH Huang, CL Chen",
     venue: "Stochastic Environmental Research and Risk Assessment 37 (1), 395-412",
     citations: "19",
-    year: "2023"
+    year: "2023",
+    href: "https://link.springer.com/article/10.1007/s00477-022-02301-3"
   },
   {
     title: "An optimal integration of multiple machine learning techniques to real-time reservoir inflow forecasting",
     authors: "IH Huang, MJ Chang, GF Lin",
     venue: "Stochastic Environmental Research and Risk Assessment 36 (6), 1541-1561",
     citations: "18",
-    year: "2022"
+    year: "2022",
+    href: "https://link.springer.com/article/10.1007/s00477-021-02085-y"
   },
   {
     title: "Long-term flooding maps forecasting system using series machine learning and numerical weather prediction system",
     authors: "MJ Chang, IH Huang, CT Hsu, SJ Wu, JS Lai, GF Lin",
     venue: "Water 14 (20), 3346",
     citations: "9",
-    year: "2022"
+    year: "2022",
+    href: "https://www.mdpi.com/2073-4441/14/20/3346"
   },
   {
     title: "Estimation of latent heat flux using a non-parametric method",
     authors: "CI Hsieh, CJ Chiu, IH Huang, G Kiely",
     venue: "Water 14 (21), 3474",
     citations: "8",
-    year: "2022"
+    year: "2022",
+    href: "https://www.mdpi.com/2073-4441/14/21/3474"
   },
   {
     title: "Effects of Street Spatial Structure on Micrometeorological Condition and Air Quality - A Case Study of Taipei City",
     authors: "BS Lin, HC Chang, CW Chen, IH Huang, L Pardthaisong, CI Hsieh",
     venue: "Forests 15 (12), 2221",
     citations: "3",
-    year: "2024"
+    year: "2024",
+    href: "https://www.mdpi.com/1999-4907/15/12/2221"
   },
   {
     title: "Estimating Ground Heat Flux from Net Radiation",
     authors: "CI Hsieh, CJ Chiu, IH Huang, S Visessri",
     venue: "Atmosphere 14 (12), 1778",
     citations: "2",
-    year: "2023"
+    year: "2023",
+    href: "https://www.mdpi.com/2073-4433/14/12/1778"
   },
   {
     title: "Estimating canopy resistance using machine learning and analytical approaches",
     authors: "CI Hsieh, IH Huang, CT Lu",
     venue: "Water 15 (21), 3839",
     citations: "1",
-    year: "2023"
+    year: "2023",
+    href: "https://www.mdpi.com/2073-4441/15/21/3839"
   },
   {
     title: "A novel hybrid machine learning model for flood hazard zoning assessments",
     authors: "JH Wang, GF Lin, YR Huang, IH Huang, CL Chen",
     venue: "Google Scholar listing",
     citations: "-",
-    year: "2022"
+    year: "2022",
+    href: "https://www.researchsquare.com/article/rs-1480061/v1"
   }
 ];
 
@@ -186,6 +196,7 @@ const fadeUp = {
 
 function App() {
   const [isNchcOpen, setIsNchcOpen] = useState(false);
+  const [isPublicationsOpen, setIsPublicationsOpen] = useState(false);
 
   return (
     <main className="min-h-screen overflow-hidden bg-rec-black text-rec-bone selection:bg-rec-blue selection:text-rec-black">
@@ -341,7 +352,7 @@ function App() {
               <div className="mt-6 grid gap-4 lg:grid-cols-2">
                 {platformSlides.map((slide) => (
                   <figure key={slide.title} className="overflow-hidden border border-white/12 bg-black/40">
-                    <img src={slide.src} alt={slide.title} className="aspect-[16/10] w-full object-cover object-left-top" loading="lazy" />
+                    <img src={slide.src} alt={slide.title} className="aspect-[16/10] w-full bg-white object-contain" loading="lazy" />
                     <figcaption className="border-t border-white/10 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-rec-steel">
                       {slide.title}
                     </figcaption>
@@ -382,39 +393,82 @@ function App() {
       </section>
 
       <section id="publications" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
-        <SectionLabel title="Publications" code="03 / Google Scholar" />
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <InfoBlock label="Citations" value="164 total / 153 since 2021" />
-          <InfoBlock label="h-index" value="6 total / 6 since 2021" />
-          <InfoBlock label="i10-index" value="4 total / 4 since 2021" />
-        </div>
-        <div className="mt-6 overflow-hidden border border-white/12 bg-white/[0.035] backdrop-blur-xl">
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[900px] border-collapse text-left">
-              <thead>
-                <tr className="border-b border-white/12 font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
-                  <th className="px-5 py-4 font-medium">Title</th>
-                  <th className="px-5 py-4 font-medium">Venue</th>
-                  <th className="px-5 py-4 text-right font-medium">Cited</th>
-                  <th className="px-5 py-4 text-right font-medium">Year</th>
-                </tr>
-              </thead>
-              <tbody>
-                {publications.map((publication) => (
-                  <tr key={publication.title} className="border-b border-white/8 align-top transition hover:bg-white/[0.045]">
-                    <td className="max-w-xl px-5 py-5">
-                      <p className="text-base font-semibold leading-6 text-white">{publication.title}</p>
-                      <p className="mt-2 text-sm leading-6 text-rec-steel">{publication.authors}</p>
-                    </td>
-                    <td className="px-5 py-5 text-sm leading-6 text-rec-pearl">{publication.venue}</td>
-                    <td className="px-5 py-5 text-right font-mono text-sm text-rec-blue">{publication.citations}</td>
-                    <td className="px-5 py-5 text-right font-mono text-sm text-rec-pearl">{publication.year}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <button
+          type="button"
+          onClick={() => setIsPublicationsOpen((value) => !value)}
+          aria-expanded={isPublicationsOpen}
+          aria-controls="publications-panel"
+          className="group w-full text-left"
+        >
+          <div className="flex flex-col gap-6 border border-white/12 bg-white/[0.035] p-5 backdrop-blur-xl transition hover:border-rec-blue/45 hover:bg-white/[0.055] sm:p-7 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
+                03 / Google Scholar
+              </p>
+              <h2 className="mt-4 text-4xl font-black uppercase leading-none text-white md:text-6xl">
+                Publications
+              </h2>
+            </div>
+            <div className="flex items-center gap-4">
+              <p className="max-w-md text-sm leading-7 text-rec-pearl">
+                Peer-reviewed work across hydrology, environmental sensing, flood modeling, and applied machine learning.
+              </p>
+              <ChevronDown className={`h-5 w-5 shrink-0 text-rec-blue transition ${isPublicationsOpen ? "rotate-180" : ""}`} />
+            </div>
           </div>
-        </div>
+        </button>
+        <AnimatePresence initial={false}>
+          {isPublicationsOpen ? (
+            <motion.div
+              id="publications-panel"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.28 }}
+            >
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                <InfoBlock label="Citations" value="164 total / 153 since 2021" />
+                <InfoBlock label="h-index" value="6 total / 6 since 2021" />
+                <InfoBlock label="i10-index" value="4 total / 4 since 2021" />
+              </div>
+              <div className="mt-6 overflow-hidden border border-white/12 bg-white/[0.035] backdrop-blur-xl">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[900px] border-collapse text-left">
+                    <thead>
+                      <tr className="border-b border-white/12 font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
+                        <th className="px-5 py-4 font-medium">Title</th>
+                        <th className="px-5 py-4 font-medium">Venue</th>
+                        <th className="px-5 py-4 text-right font-medium">Cited</th>
+                        <th className="px-5 py-4 text-right font-medium">Year</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {publications.map((publication) => (
+                        <tr key={publication.title} className="border-b border-white/8 align-top transition hover:bg-white/[0.045]">
+                          <td className="max-w-xl px-5 py-5">
+                            <a
+                              href={publication.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="group/link inline-flex items-start gap-2 text-base font-semibold leading-6 text-white transition hover:text-rec-blue"
+                            >
+                              {publication.title}
+                              <ExternalLink className="mt-1 h-3.5 w-3.5 shrink-0 text-rec-steel transition group-hover/link:text-rec-blue" />
+                            </a>
+                            <p className="mt-2 text-sm leading-6 text-rec-steel">{publication.authors}</p>
+                          </td>
+                          <td className="px-5 py-5 text-sm leading-6 text-rec-pearl">{publication.venue}</td>
+                          <td className="px-5 py-5 text-right font-mono text-sm text-rec-blue">{publication.citations}</td>
+                          <td className="px-5 py-5 text-right font-mono text-sm text-rec-pearl">{publication.year}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </section>
 
       <section id="about" className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
