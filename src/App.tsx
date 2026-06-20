@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   BrainCircuit,
+  ChevronDown,
   Cpu,
   ExternalLink,
   Github,
@@ -13,7 +14,12 @@ import {
   TerminalSquare,
   Workflow
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import platformSlide01 from "./assets/nchc-agent-platform-1.png";
+import platformSlide02 from "./assets/nchc-agent-platform-2.png";
+import platformSlide03 from "./assets/nchc-agent-platform-3.png";
+import platformSlide04 from "./assets/nchc-agent-platform-4.png";
 
 const projects = [
   {
@@ -22,7 +28,7 @@ const projects = [
     description:
       "A disaster-response agent platform foundation combining Graph RAG governance, multimodal task loops, and controlled automation.",
     tags: ["Graph RAG", "Agentic Loop", "Automation", "Backend"],
-    href: "#nchc-platform"
+    action: "toggle-nchc"
   },
   {
     title: "OpenClaw Integration",
@@ -57,6 +63,79 @@ const projects = [
   }
 ];
 
+const publications = [
+  {
+    title: "Real-time water-level forecasting using dilated causal convolutional neural networks",
+    authors: "JH Wang, GF Lin, MJ Chang, IH Huang, YR Chen",
+    venue: "Water Resources Management 33 (11), 3759-3780",
+    citations: "80",
+    year: "2019"
+  },
+  {
+    title: "Gap-filling of surface fluxes using machine learning algorithms in various ecosystems",
+    authors: "IH Huang, CI Hsieh",
+    venue: "Water 12 (12), 3415",
+    citations: "24",
+    year: "2020"
+  },
+  {
+    title: "Application of hybrid machine learning model for flood hazard zoning assessments",
+    authors: "JH Wang, GF Lin, YR Huang, IH Huang, CL Chen",
+    venue: "Stochastic Environmental Research and Risk Assessment 37 (1), 395-412",
+    citations: "19",
+    year: "2023"
+  },
+  {
+    title: "An optimal integration of multiple machine learning techniques to real-time reservoir inflow forecasting",
+    authors: "IH Huang, MJ Chang, GF Lin",
+    venue: "Stochastic Environmental Research and Risk Assessment 36 (6), 1541-1561",
+    citations: "18",
+    year: "2022"
+  },
+  {
+    title: "Long-term flooding maps forecasting system using series machine learning and numerical weather prediction system",
+    authors: "MJ Chang, IH Huang, CT Hsu, SJ Wu, JS Lai, GF Lin",
+    venue: "Water 14 (20), 3346",
+    citations: "9",
+    year: "2022"
+  },
+  {
+    title: "Estimation of latent heat flux using a non-parametric method",
+    authors: "CI Hsieh, CJ Chiu, IH Huang, G Kiely",
+    venue: "Water 14 (21), 3474",
+    citations: "8",
+    year: "2022"
+  },
+  {
+    title: "Effects of Street Spatial Structure on Micrometeorological Condition and Air Quality - A Case Study of Taipei City",
+    authors: "BS Lin, HC Chang, CW Chen, IH Huang, L Pardthaisong, CI Hsieh",
+    venue: "Forests 15 (12), 2221",
+    citations: "3",
+    year: "2024"
+  },
+  {
+    title: "Estimating Ground Heat Flux from Net Radiation",
+    authors: "CI Hsieh, CJ Chiu, IH Huang, S Visessri",
+    venue: "Atmosphere 14 (12), 1778",
+    citations: "2",
+    year: "2023"
+  },
+  {
+    title: "Estimating canopy resistance using machine learning and analytical approaches",
+    authors: "CI Hsieh, IH Huang, CT Lu",
+    venue: "Water 15 (21), 3839",
+    citations: "1",
+    year: "2023"
+  },
+  {
+    title: "A novel hybrid machine learning model for flood hazard zoning assessments",
+    authors: "JH Wang, GF Lin, YR Huang, IH Huang, CL Chen",
+    venue: "Google Scholar listing",
+    citations: "-",
+    year: "2022"
+  }
+];
+
 const platformModules = [
   {
     index: "00",
@@ -84,6 +163,13 @@ const platformModules = [
   }
 ];
 
+const platformSlides = [
+  { src: platformSlide01, title: "Graph RAG Knowledge Governance Foundation" },
+  { src: platformSlide02, title: "Multimodal Task-Oriented Agent Architecture" },
+  { src: platformSlide03, title: "AI Automation & Controlled Execution Framework" },
+  { src: platformSlide04, title: "Sample Output of System" }
+];
+
 const systems = [
   { name: "Planner", icon: Workflow, metric: "multi-step reasoning" },
   { name: "RAG", icon: Layers3, metric: "retrieval pipelines" },
@@ -99,6 +185,8 @@ const fadeUp = {
 };
 
 function App() {
+  const [isNchcOpen, setIsNchcOpen] = useState(false);
+
   return (
     <main className="min-h-screen overflow-hidden bg-rec-black text-rec-bone selection:bg-rec-blue selection:text-rec-black">
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(88,166,255,.18),transparent_32%),radial-gradient(circle_at_82%_18%,rgba(141,107,255,.18),transparent_30%),linear-gradient(145deg,#050506_0%,#0b0c10_52%,#050506_100%)]" />
@@ -114,6 +202,9 @@ function App() {
           </a>
           <a className="transition hover:text-rec-bone" href="#systems">
             Systems
+          </a>
+          <a className="transition hover:text-rec-bone" href="#publications">
+            Publications
           </a>
           <a className="transition hover:text-rec-bone" href="#about">
             About
@@ -203,72 +294,63 @@ function App() {
         <SectionLabel title="Featured Projects" code="01 / Selected Work" />
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
-            <motion.a
+            <ProjectCard
               key={project.title}
-              href={project.href}
-              target={project.href?.startsWith("http") ? "_blank" : undefined}
-              rel={project.href?.startsWith("http") ? "noreferrer" : undefined}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: index * 0.06 }}
-              className="group min-h-[340px] border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-rec-blue/45 hover:bg-white/[0.075]"
-            >
-              <div className="mb-12 flex items-start justify-between gap-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
-                  {project.category}
-                </p>
-                {project.href?.startsWith("http") ? (
-                  <ExternalLink className="h-4 w-4 text-rec-steel transition group-hover:translate-x-1 group-hover:text-rec-bone" />
-                ) : (
-                  <ArrowRight className="h-4 w-4 text-rec-steel transition group-hover:translate-x-1 group-hover:text-rec-bone" />
-                )}
-              </div>
-              <h3 className="text-3xl font-semibold leading-tight text-white">{project.title}</h3>
-              <p className="mt-5 text-sm leading-7 text-rec-pearl">{project.description}</p>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="border border-white/12 bg-black/30 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-rec-pearl">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </motion.a>
+              project={project}
+              isOpen={project.action === "toggle-nchc" && isNchcOpen}
+              onClick={project.action === "toggle-nchc" ? () => setIsNchcOpen((value) => !value) : undefined}
+              index={index}
+            />
           ))}
         </div>
 
-        <motion.div
-          id="nchc-platform"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          className="mt-6 border border-white/12 bg-white/[0.035] p-5 backdrop-blur-2xl sm:p-7"
-        >
-          <div className="flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
-                NCHC Agent Platform
-              </p>
-              <h3 className="mt-4 max-w-4xl text-3xl font-black uppercase leading-none text-white md:text-5xl">
-                Disaster-response AI agent backend
-              </h3>
-            </div>
-            <p className="max-w-md text-sm leading-7 text-rec-pearl">
-              Portfolio content adapted from the uploaded AI Agent Platform deck, translated into a compact system map for the Recovian interface.
-            </p>
-          </div>
-          <div className="mt-6 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 xl:grid-cols-4">
-            {platformModules.map((module) => (
-              <div key={module.title} className="bg-rec-black p-5">
-                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
-                  Module {module.index}
+        <AnimatePresence initial={false}>
+          {isNchcOpen ? (
+            <motion.div
+              id="nchc-platform"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.28 }}
+              className="mt-6 border border-rec-blue/35 bg-white/[0.035] p-5 backdrop-blur-2xl sm:p-7"
+            >
+              <div className="flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
+                    NCHC Agent Platform
+                  </p>
+                  <h3 className="mt-4 max-w-4xl text-3xl font-black uppercase leading-none text-white md:text-5xl">
+                    Disaster-response AI agent backend
+                  </h3>
+                </div>
+                <p className="max-w-md text-sm leading-7 text-rec-pearl">
+                  Portfolio content adapted from the uploaded AI Agent Platform deck, translated into an interactive system map for the Recovian interface.
                 </p>
-                <h4 className="mt-8 text-xl font-semibold leading-tight text-white">{module.title}</h4>
-                <p className="mt-4 text-sm leading-7 text-rec-pearl">{module.detail}</p>
               </div>
-            ))}
-          </div>
-        </motion.div>
+              <div className="mt-6 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 xl:grid-cols-4">
+                {platformModules.map((module) => (
+                  <div key={module.title} className="bg-rec-black p-5">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
+                      Module {module.index}
+                    </p>
+                    <h4 className="mt-8 text-xl font-semibold leading-tight text-white">{module.title}</h4>
+                    <p className="mt-4 text-sm leading-7 text-rec-pearl">{module.detail}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                {platformSlides.map((slide) => (
+                  <figure key={slide.title} className="overflow-hidden border border-white/12 bg-black/40">
+                    <img src={slide.src} alt={slide.title} className="aspect-[16/10] w-full object-cover object-left-top" loading="lazy" />
+                    <figcaption className="border-t border-white/10 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-rec-steel">
+                      {slide.title}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </section>
 
       <section id="systems" className="border-y border-white/10 bg-white/[0.025] py-24">
@@ -299,8 +381,44 @@ function App() {
         </div>
       </section>
 
+      <section id="publications" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+        <SectionLabel title="Publications" code="03 / Google Scholar" />
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          <InfoBlock label="Citations" value="164 total / 153 since 2021" />
+          <InfoBlock label="h-index" value="6 total / 6 since 2021" />
+          <InfoBlock label="i10-index" value="4 total / 4 since 2021" />
+        </div>
+        <div className="mt-6 overflow-hidden border border-white/12 bg-white/[0.035] backdrop-blur-xl">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[900px] border-collapse text-left">
+              <thead>
+                <tr className="border-b border-white/12 font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
+                  <th className="px-5 py-4 font-medium">Title</th>
+                  <th className="px-5 py-4 font-medium">Venue</th>
+                  <th className="px-5 py-4 text-right font-medium">Cited</th>
+                  <th className="px-5 py-4 text-right font-medium">Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                {publications.map((publication) => (
+                  <tr key={publication.title} className="border-b border-white/8 align-top transition hover:bg-white/[0.045]">
+                    <td className="max-w-xl px-5 py-5">
+                      <p className="text-base font-semibold leading-6 text-white">{publication.title}</p>
+                      <p className="mt-2 text-sm leading-6 text-rec-steel">{publication.authors}</p>
+                    </td>
+                    <td className="px-5 py-5 text-sm leading-6 text-rec-pearl">{publication.venue}</td>
+                    <td className="px-5 py-5 text-right font-mono text-sm text-rec-blue">{publication.citations}</td>
+                    <td className="px-5 py-5 text-right font-mono text-sm text-rec-pearl">{publication.year}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section id="about" className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
-        <SectionLabel title="About Choyer Huang" code="03 / Profile" />
+        <SectionLabel title="About Choyer Huang" code="04 / Profile" />
         <div>
           <p className="text-[clamp(2rem,5vw,5.8rem)] font-black uppercase leading-[0.92] text-white">
             Building practical AI systems with an experimental studio edge.
@@ -331,6 +449,82 @@ function App() {
         </div>
       </footer>
     </main>
+  );
+}
+
+function ProjectCard({
+  project,
+  index,
+  isOpen,
+  onClick
+}: {
+  project: (typeof projects)[number];
+  index: number;
+  isOpen: boolean;
+  onClick?: () => void;
+}) {
+  const isExternal = project.href?.startsWith("http");
+  const Icon = project.action === "toggle-nchc" ? ChevronDown : isExternal ? ExternalLink : ArrowRight;
+  const cardClass =
+    "group min-h-[340px] border border-white/12 bg-white/[0.045] p-6 text-left backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-rec-blue/45 hover:bg-white/[0.075]";
+  const content = (
+    <>
+      <div className="mb-12 flex items-start justify-between gap-4">
+        <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
+          {project.category}
+        </p>
+        <Icon
+          className={`h-4 w-4 text-rec-steel transition group-hover:text-rec-bone ${
+            isOpen ? "rotate-180" : "group-hover:translate-x-1"
+          }`}
+        />
+      </div>
+      <h3 className="text-3xl font-semibold leading-tight text-white">{project.title}</h3>
+      <p className="mt-5 text-sm leading-7 text-rec-pearl">{project.description}</p>
+      <div className="mt-8 flex flex-wrap gap-2">
+        {project.tags.map((tag) => (
+          <span
+            key={tag}
+            className="border border-white/12 bg-black/30 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-rec-pearl"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <motion.button
+        type="button"
+        onClick={onClick}
+        aria-expanded={isOpen}
+        aria-controls="nchc-platform"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ delay: index * 0.06 }}
+        className={cardClass}
+      >
+        {content}
+      </motion.button>
+    );
+  }
+
+  return (
+    <motion.a
+      href={project.href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noreferrer" : undefined}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ delay: index * 0.06 }}
+      className={cardClass}
+    >
+      {content}
+    </motion.a>
   );
 }
 
