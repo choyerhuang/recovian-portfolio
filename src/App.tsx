@@ -6,6 +6,7 @@ import {
   ExternalLink,
   Github,
   Layers3,
+  Languages,
   Linkedin,
   Mail,
   Network,
@@ -25,40 +26,60 @@ const projects = [
   {
     title: "NCHC Agent Backend",
     category: "Agent Infrastructure",
+    categoryZh: "Agent 基礎架構",
     description:
       "A disaster-response agent platform foundation combining Graph RAG governance, multimodal task loops, and controlled automation.",
+    descriptionZh:
+      "面向災害應變的 AI Agent 平台後端，整合 Graph RAG 知識治理、多模態任務迴圈與可控自動化執行。",
     tags: ["Graph RAG", "Agentic Loop", "Automation", "Backend"],
+    tagsZh: ["Graph RAG", "Agent 迴圈", "自動化", "後端"],
     action: "toggle-nchc"
   },
   {
     title: "OpenClaw Integration",
     category: "Tooling Layer",
+    categoryZh: "工具整合層",
     description:
       "Integration surface for open agent tools, routing flows, and modular assistant capabilities.",
-    tags: ["OpenClaw", "Tool Routing", "Backend", "Automation"]
+    descriptionZh:
+      "為開放式 Agent 工具、路由流程與模組化助理能力建立整合介面。",
+    tags: ["OpenClaw", "Tool Routing", "Backend", "Automation"],
+    tagsZh: ["OpenClaw", "工具路由", "後端", "自動化"]
   },
   {
     title: "Clinical Note Structuring Tool",
     category: "Applied ML",
+    categoryZh: "應用機器學習",
     description:
       "Transforms unstructured clinical notes into structured data for downstream review and ML-assisted workflows.",
+    descriptionZh:
+      "將非結構化臨床筆記轉換為結構化資料，支援後續審閱與 ML 輔助流程。",
     tags: ["NLP", "RAG", "Healthcare", "Data UX"],
+    tagsZh: ["NLP", "RAG", "醫療資料", "Data UX"],
     href: "https://github.com/choyerhuang/clinical-note-structuring-tool"
   },
   {
     title: "OpenWebUI Deployment",
     category: "Self-hosted AI",
+    categoryZh: "自架 AI 介面",
     description:
       "Local and cloud-connected AI interface deployment with tunnels, model endpoints, and secure operational patterns.",
+    descriptionZh:
+      "部署本地與雲端連線的 AI 使用介面，包含 tunnel、模型端點與安全營運模式。",
     tags: ["OpenWebUI", "Cloudflare", "Docker", "LLM Ops"],
+    tagsZh: ["OpenWebUI", "Cloudflare", "Docker", "LLM 維運"],
     href: "https://webui.recovian.ai/"
   },
   {
     title: "Future Game Lab",
     category: "Interactive Experiments",
+    categoryZh: "互動實驗",
     description:
       "A home for playable systems, economy prototypes, narrative interfaces, and AI-assisted game experiments.",
+    descriptionZh:
+      "放置可遊玩系統、經濟原型、敘事介面與 AI 輔助遊戲實驗的作品區。",
     tags: ["Game Lab", "Prototype", "Systems", "Web Game"],
+    tagsZh: ["遊戲實驗室", "原型", "系統", "Web Game"],
     href: "https://choyerhuang.github.io/toMonolopy_GoldMilestone/"
   }
 ];
@@ -150,44 +171,151 @@ const platformModules = [
   {
     index: "00",
     title: "Graph RAG Knowledge Governance",
+    titleZh: "Graph RAG 知識治理",
     detail:
-      "Scalable knowledge management pipeline for disaster-response AI agents, designed around governed retrieval and reusable domain memory."
+      "Scalable knowledge management pipeline for disaster-response AI agents, designed around governed retrieval and reusable domain memory.",
+    detailZh:
+      "為災害應變 AI Agent 建立可擴充的知識管理管線，支援受控檢索與可重用的領域記憶。"
   },
   {
     index: "01",
     title: "Multimodal Task-Oriented Agents",
+    titleZh: "多模態任務型 Agent",
     detail:
-      "Agentic loop architecture that moves beyond Q&A into multimodal task execution, routing, and context-aware tool use."
+      "Agentic loop architecture that moves beyond Q&A into multimodal task execution, routing, and context-aware tool use.",
+    detailZh:
+      "以 Agentic loop 架構從單純問答推進到多模態任務執行、路由與情境感知工具使用。"
   },
   {
     index: "02",
     title: "Controlled Execution Framework",
+    titleZh: "可控執行框架",
     detail:
-      "Automation layer for operational workflows, keeping agent actions structured, inspectable, and bounded."
+      "Automation layer for operational workflows, keeping agent actions structured, inspectable, and bounded.",
+    detailZh:
+      "面向實際作業流程的自動化層，讓 Agent 行為保持結構化、可檢查且有邊界。"
   },
   {
     index: "03",
     title: "Mandarin System Output",
+    titleZh: "中文系統輸出",
     detail:
-      "Mandarin-first response surface for practical deployment scenarios and human review workflows."
+      "Mandarin-first response surface for practical deployment scenarios and human review workflows.",
+    detailZh:
+      "以中文為優先的回應介面，支援實際部署情境與人工審閱流程。"
   }
 ];
 
 const platformSlides = [
-  { src: platformSlide01, title: "Graph RAG Knowledge Governance Foundation" },
-  { src: platformSlide02, title: "Multimodal Task-Oriented Agent Architecture" },
-  { src: platformSlide03, title: "AI Automation & Controlled Execution Framework" },
-  { src: platformSlide04, title: "Sample Output of System" }
+  { src: platformSlide01, title: "Graph RAG Knowledge Governance Foundation", titleZh: "Graph RAG 知識治理基礎" },
+  { src: platformSlide02, title: "Multimodal Task-Oriented Agent Architecture", titleZh: "多模態任務型 Agent 架構" },
+  { src: platformSlide03, title: "AI Automation & Controlled Execution Framework", titleZh: "AI 自動化與可控執行框架" },
+  { src: platformSlide04, title: "Sample Output of System", titleZh: "系統輸出範例" }
 ];
 
 const systems = [
-  { name: "Planner", icon: Workflow, metric: "multi-step reasoning" },
-  { name: "RAG", icon: Layers3, metric: "retrieval pipelines" },
-  { name: "VLM", icon: BrainCircuit, metric: "vision-language flows" },
-  { name: "Tool Routing", icon: Network, metric: "agent actions" },
-  { name: "Automation", icon: Cpu, metric: "repeatable workflows" },
-  { name: "Self-hosting", icon: ServerCog, metric: "tunnels and services" }
+  { name: "Planner", icon: Workflow, metric: "multi-step reasoning", metricZh: "多步驟推理" },
+  { name: "RAG", icon: Layers3, metric: "retrieval pipelines", metricZh: "檢索增強管線" },
+  { name: "VLM", icon: BrainCircuit, metric: "vision-language flows", metricZh: "視覺語言流程" },
+  { name: "Tool Routing", icon: Network, metric: "agent actions", metricZh: "Agent 工具動作" },
+  { name: "Automation", icon: Cpu, metric: "repeatable workflows", metricZh: "可重複工作流" },
+  { name: "Self-hosting", icon: ServerCog, metric: "tunnels and services", metricZh: "Tunnel 與自架服務" }
 ];
+
+const ui = {
+  en: {
+    navProjects: "Projects",
+    navSystems: "Systems",
+    navPublications: "Publications",
+    navAbout: "About",
+    languageLabel: "繁中",
+    heroEyebrow: "Portfolio / AI Lab / Digital Atelier",
+    heroSubtitle: "AI Systems / Agentic Tools / Game Experiments",
+    viewProjects: "View Projects",
+    aboutCta: "About Choyer",
+    liveSurface: "Live System Surface",
+    buildMode: "Build Mode",
+    studioSignal: "Studio Signal",
+    projectsTitle: "Featured Projects",
+    projectsCode: "01 / Selected Work",
+    nchcLabel: "NCHC Agent Platform",
+    nchcTitle: "Disaster-response AI agent backend",
+    nchcDescription:
+      "Portfolio content adapted from the uploaded AI Agent Platform deck, translated into an interactive system map for the Recovian interface.",
+    module: "Module",
+    systemsTitle: "Lab / Systems",
+    systemsCode: "02 / Modular Capability Grid",
+    online: "online",
+    publicationsCode: "03 / Google Scholar",
+    publicationsTitle: "Publications",
+    publicationsDescription:
+      "Peer-reviewed work across hydrology, environmental sensing, flood modeling, and applied machine learning.",
+    citations: "Citations",
+    citationValue: "164 total / 153 since 2021",
+    hIndex: "h-index",
+    hIndexValue: "6 total / 6 since 2021",
+    i10Index: "i10-index",
+    i10Value: "4 total / 4 since 2021",
+    tableTitle: "Title",
+    tableVenue: "Venue",
+    tableCited: "Cited",
+    tableYear: "Year",
+    aboutTitle: "About Choyer Huang",
+    aboutCode: "04 / Profile",
+    aboutHeadline: "Building practical AI systems with an experimental studio edge.",
+    education: "Education",
+    focus: "Focus",
+    focusValue: "AI agents, backend systems, automation, ML applications",
+    aboutBody:
+      "Recovian is a living portfolio for agent systems, OpenWebUI demos, backend infrastructure, retrieval workflows, and future game experiments. The site is designed as a product surface: quiet, spatial, technical, and ready to expand as new projects ship."
+  },
+  zh: {
+    navProjects: "作品",
+    navSystems: "系統",
+    navPublications: "發表",
+    navAbout: "關於",
+    languageLabel: "EN",
+    heroEyebrow: "作品集 / AI 實驗室 / 數位工作室",
+    heroSubtitle: "AI 系統 / Agent 工具 / 遊戲實驗",
+    viewProjects: "查看作品",
+    aboutCta: "關於 Choyer",
+    liveSurface: "即時系統介面",
+    buildMode: "建構模式",
+    studioSignal: "工作室訊號",
+    projectsTitle: "精選作品",
+    projectsCode: "01 / Selected Work",
+    nchcLabel: "NCHC Agent Platform",
+    nchcTitle: "災害應變 AI Agent 後端",
+    nchcDescription:
+      "此內容改編自 AI Agent Platform 簡報，整理成符合 Recovian 介面的互動式系統地圖。",
+    module: "模組",
+    systemsTitle: "Lab / Systems",
+    systemsCode: "02 / Modular Capability Grid",
+    online: "online",
+    publicationsCode: "03 / Google Scholar",
+    publicationsTitle: "發表清單",
+    publicationsDescription:
+      "橫跨水文、環境感測、淹水模擬與應用機器學習的學術發表。",
+    citations: "引用數",
+    citationValue: "總引用 164 / 2021 起 153",
+    hIndex: "h-index",
+    hIndexValue: "總計 6 / 2021 起 6",
+    i10Index: "i10-index",
+    i10Value: "總計 4 / 2021 起 4",
+    tableTitle: "題名",
+    tableVenue: "期刊 / 出處",
+    tableCited: "引用",
+    tableYear: "年份",
+    aboutTitle: "關於 Choyer Huang",
+    aboutCode: "04 / Profile",
+    aboutHeadline: "以實驗工作室的視角，建構可落地的 AI 系統。",
+    education: "學歷",
+    focus: "專注領域",
+    focusValue: "AI agents、後端系統、自動化、機器學習應用",
+    aboutBody:
+      "Recovian 是一個持續更新的作品集，用來展示 Agent 系統、OpenWebUI demo、後端基礎設施、檢索流程，以及未來的遊戲實驗。整體被設計成產品介面：安靜、有空間感、技術導向，並能隨新作品持續擴充。"
+  }
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -197,6 +325,15 @@ const fadeUp = {
 function App() {
   const [isNchcOpen, setIsNchcOpen] = useState(false);
   const [isPublicationsOpen, setIsPublicationsOpen] = useState(false);
+  const [language, setLanguage] = useState<"en" | "zh">("en");
+  const isZh = language === "zh";
+  const t = ui[language];
+  const localizedProjects = projects.map((project) => ({
+    ...project,
+    category: isZh ? project.categoryZh ?? project.category : project.category,
+    description: isZh ? project.descriptionZh ?? project.description : project.description,
+    tags: isZh ? project.tagsZh ?? project.tags : project.tags
+  }));
 
   return (
     <main className="min-h-screen overflow-hidden bg-rec-black text-rec-bone selection:bg-rec-blue selection:text-rec-black">
@@ -207,26 +344,37 @@ function App() {
         <a className="font-mono text-xs uppercase tracking-[0.34em] text-rec-pearl" href="#top">
           Recovian Labs
         </a>
+        <div className="flex items-center gap-4">
         <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.28em] text-rec-steel md:flex">
           <a className="transition hover:text-rec-bone" href="#projects">
-            Projects
+            {t.navProjects}
           </a>
           <a className="transition hover:text-rec-bone" href="#systems">
-            Systems
+            {t.navSystems}
           </a>
           <a className="transition hover:text-rec-bone" href="#publications">
-            Publications
+            {t.navPublications}
           </a>
           <a className="transition hover:text-rec-bone" href="#about">
-            About
+            {t.navAbout}
           </a>
         </nav>
+          <button
+            type="button"
+            onClick={() => setLanguage((value) => (value === "en" ? "zh" : "en"))}
+            className="inline-flex items-center gap-2 border border-white/12 bg-white/[0.035] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-rec-pearl transition hover:border-rec-blue/60 hover:text-white"
+            aria-label="Toggle language"
+          >
+            <Languages className="h-3.5 w-3.5" />
+            {t.languageLabel}
+          </button>
+        </div>
       </header>
 
       <section id="top" className="relative mx-auto grid min-h-[calc(100vh-84px)] max-w-7xl px-5 pb-16 pt-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-center lg:gap-10 xl:grid-cols-[minmax(0,1fr)_400px]">
         <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.12 }}>
           <motion.p variants={fadeUp} className="mb-5 font-mono text-xs uppercase tracking-[0.38em] text-rec-blue">
-            Portfolio / AI Lab / Digital Atelier
+            {t.heroEyebrow}
           </motion.p>
           <motion.h1
             variants={fadeUp}
@@ -238,15 +386,15 @@ function App() {
             variants={fadeUp}
             className="mt-8 max-w-2xl text-xl leading-relaxed text-rec-pearl sm:text-2xl"
           >
-            AI Systems / Agentic Tools / Game Experiments
+            {t.heroSubtitle}
           </motion.p>
           <motion.div variants={fadeUp} className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a className="group inline-flex items-center justify-center gap-3 border border-rec-bone bg-rec-bone px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-rec-black transition hover:bg-white" href="#projects">
-              View Projects
+              {t.viewProjects}
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </a>
             <a className="inline-flex items-center justify-center border border-white/18 bg-white/[0.04] px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-rec-bone backdrop-blur-xl transition hover:border-rec-blue/60 hover:text-white" href="#about">
-              About Choyer
+              {t.aboutCta}
             </a>
           </motion.div>
         </motion.div>
@@ -265,7 +413,7 @@ function App() {
           <div className="absolute bottom-12 right-6 h-72 w-72 rounded-full bg-rec-violet/18 blur-3xl" />
           <div className="relative h-full border border-white/14 bg-white/[0.055] p-5 shadow-glass backdrop-blur-2xl">
             <div className="mb-14 flex items-center justify-between border-b border-white/12 pb-4 font-mono text-[10px] uppercase tracking-[0.26em] text-rec-steel">
-              <span>Live System Surface</span>
+              <span>{t.liveSurface}</span>
               <span>R-01</span>
             </div>
             <div className="space-y-5">
@@ -285,14 +433,14 @@ function App() {
               <div className="min-w-0 border border-white/12 bg-black/28 p-4">
                 <TerminalSquare className="mb-7 h-5 w-5 text-rec-blue" />
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-rec-steel">
-                  Build Mode
+                  {t.buildMode}
                 </p>
                 <p className="mt-2 text-xl font-semibold leading-tight sm:text-2xl lg:text-xl xl:text-2xl">Agentic</p>
               </div>
               <div className="min-w-0 border border-white/12 bg-black/28 p-4">
                 <Sparkles className="mb-7 h-5 w-5 text-rec-violet" />
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-rec-steel">
-                  Studio Signal
+                  {t.studioSignal}
                 </p>
                 <p className="mt-2 text-xl font-semibold leading-tight sm:text-2xl lg:text-xl xl:text-2xl">Futures</p>
               </div>
@@ -302,9 +450,9 @@ function App() {
       </section>
 
       <section id="projects" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
-        <SectionLabel title="Featured Projects" code="01 / Selected Work" />
+        <SectionLabel title={t.projectsTitle} code={t.projectsCode} />
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project, index) => (
+          {localizedProjects.map((project, index) => (
             <ProjectCard
               key={project.title}
               project={project}
@@ -328,33 +476,33 @@ function App() {
               <div className="flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
-                    NCHC Agent Platform
+                    {t.nchcLabel}
                   </p>
                   <h3 className="mt-4 max-w-4xl text-3xl font-black uppercase leading-none text-white md:text-5xl">
-                    Disaster-response AI agent backend
+                    {t.nchcTitle}
                   </h3>
                 </div>
                 <p className="max-w-md text-sm leading-7 text-rec-pearl">
-                  Portfolio content adapted from the uploaded AI Agent Platform deck, translated into an interactive system map for the Recovian interface.
+                  {t.nchcDescription}
                 </p>
               </div>
               <div className="mt-6 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 xl:grid-cols-4">
                 {platformModules.map((module) => (
                   <div key={module.title} className="bg-rec-black p-5">
                     <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
-                      Module {module.index}
+                      {t.module} {module.index}
                     </p>
-                    <h4 className="mt-8 text-xl font-semibold leading-tight text-white">{module.title}</h4>
-                    <p className="mt-4 text-sm leading-7 text-rec-pearl">{module.detail}</p>
+                    <h4 className="mt-8 text-xl font-semibold leading-tight text-white">{isZh ? module.titleZh : module.title}</h4>
+                    <p className="mt-4 text-sm leading-7 text-rec-pearl">{isZh ? module.detailZh : module.detail}</p>
                   </div>
                 ))}
               </div>
               <div className="mt-6 grid gap-4 lg:grid-cols-2">
                 {platformSlides.map((slide) => (
                   <figure key={slide.title} className="overflow-hidden border border-white/12 bg-black/40">
-                    <img src={slide.src} alt={slide.title} className="aspect-[16/10] w-full bg-white object-contain" loading="lazy" />
+                    <img src={slide.src} alt={isZh ? slide.titleZh : slide.title} className="aspect-[16/10] w-full bg-white object-contain" loading="lazy" />
                     <figcaption className="border-t border-white/10 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-rec-steel">
-                      {slide.title}
+                      {isZh ? slide.titleZh : slide.title}
                     </figcaption>
                   </figure>
                 ))}
@@ -366,7 +514,7 @@ function App() {
 
       <section id="systems" className="border-y border-white/10 bg-white/[0.025] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionLabel title="Lab / Systems" code="02 / Modular Capability Grid" />
+          <SectionLabel title={t.systemsTitle} code={t.systemsCode} />
           <div className="mt-10 grid gap-px overflow-hidden border border-white/12 bg-white/12 md:grid-cols-2 lg:grid-cols-3">
             {systems.map((system) => {
               const Icon = system.icon;
@@ -375,12 +523,12 @@ function App() {
                   <div className="flex items-start justify-between">
                     <Icon className="h-6 w-6 text-rec-blue" />
                     <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-rec-steel">
-                      online
+                      {t.online}
                     </span>
                   </div>
                   <h3 className="mt-14 text-3xl font-semibold">{system.name}</h3>
                   <p className="mt-3 font-mono text-xs uppercase tracking-[0.18em] text-rec-steel">
-                    {system.metric}
+                    {isZh ? system.metricZh : system.metric}
                   </p>
                   <div className="mt-8 h-1 bg-white/10">
                     <div className="h-full w-2/3 bg-gradient-to-r from-rec-blue to-rec-violet" />
@@ -403,15 +551,15 @@ function App() {
           <div className="flex flex-col gap-6 border border-white/12 bg-white/[0.035] p-5 backdrop-blur-xl transition hover:border-rec-blue/45 hover:bg-white/[0.055] sm:p-7 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
-                03 / Google Scholar
+                {t.publicationsCode}
               </p>
               <h2 className="mt-4 text-4xl font-black uppercase leading-none text-white md:text-6xl">
-                Publications
+                {t.publicationsTitle}
               </h2>
             </div>
             <div className="flex items-center gap-4">
               <p className="max-w-md text-sm leading-7 text-rec-pearl">
-                Peer-reviewed work across hydrology, environmental sensing, flood modeling, and applied machine learning.
+                {t.publicationsDescription}
               </p>
               <ChevronDown className={`h-5 w-5 shrink-0 text-rec-blue transition ${isPublicationsOpen ? "rotate-180" : ""}`} />
             </div>
@@ -427,19 +575,19 @@ function App() {
               transition={{ duration: 0.28 }}
             >
               <div className="mt-6 grid gap-4 md:grid-cols-3">
-                <InfoBlock label="Citations" value="164 total / 153 since 2021" />
-                <InfoBlock label="h-index" value="6 total / 6 since 2021" />
-                <InfoBlock label="i10-index" value="4 total / 4 since 2021" />
+                <InfoBlock label={t.citations} value={t.citationValue} />
+                <InfoBlock label={t.hIndex} value={t.hIndexValue} />
+                <InfoBlock label={t.i10Index} value={t.i10Value} />
               </div>
               <div className="mt-6 overflow-hidden border border-white/12 bg-white/[0.035] backdrop-blur-xl">
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[900px] border-collapse text-left">
                     <thead>
                       <tr className="border-b border-white/12 font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
-                        <th className="px-5 py-4 font-medium">Title</th>
-                        <th className="px-5 py-4 font-medium">Venue</th>
-                        <th className="px-5 py-4 text-right font-medium">Cited</th>
-                        <th className="px-5 py-4 text-right font-medium">Year</th>
+                        <th className="px-5 py-4 font-medium">{t.tableTitle}</th>
+                        <th className="px-5 py-4 font-medium">{t.tableVenue}</th>
+                        <th className="px-5 py-4 text-right font-medium">{t.tableCited}</th>
+                        <th className="px-5 py-4 text-right font-medium">{t.tableYear}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -472,19 +620,17 @@ function App() {
       </section>
 
       <section id="about" className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
-        <SectionLabel title="About Choyer Huang" code="04 / Profile" />
+        <SectionLabel title={t.aboutTitle} code={t.aboutCode} />
         <div>
           <p className="text-[clamp(2rem,5vw,5.8rem)] font-black uppercase leading-[0.92] text-white">
-            Building practical AI systems with an experimental studio edge.
+            {t.aboutHeadline}
           </p>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
-            <InfoBlock label="Education" value="USC MSCS" />
-            <InfoBlock label="Focus" value="AI agents, backend systems, automation, ML applications" />
+            <InfoBlock label={t.education} value="USC MSCS" />
+            <InfoBlock label={t.focus} value={t.focusValue} />
           </div>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-rec-pearl">
-            Recovian is a living portfolio for agent systems, OpenWebUI demos, backend infrastructure,
-            retrieval workflows, and future game experiments. The site is designed as a product surface:
-            quiet, spatial, technical, and ready to expand as new projects ship.
+            {t.aboutBody}
           </p>
         </div>
       </section>
