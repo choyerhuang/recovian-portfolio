@@ -71,6 +71,18 @@ const projects = [
     href: "https://webui.recovian.ai/"
   },
   {
+    title: "Nestoria",
+    category: "Online RPG Product",
+    categoryZh: "線上 RPG 產品",
+    description:
+      "A 2D / 2.5D mythic online RPG about rebuilding a frontier town on a floating island after the war between the Aesir and Vanir gods.",
+    descriptionZh:
+      "一款 2D / 2.5D 神話線上 RPG，玩家在 Aesir 與 Vanir 神戰後的浮空島上重建邊境城鎮。",
+    tags: ["Golang", "PostgreSQL", "Redis", "React", "Phaser"],
+    tagsZh: ["Golang", "PostgreSQL", "Redis", "React", "Phaser"],
+    href: "https://nestoria.recovian.ai/world"
+  },
+  {
     title: "Future Game Lab",
     category: "Interactive Experiments",
     categoryZh: "互動實驗",
@@ -83,6 +95,39 @@ const projects = [
     href: "https://choyerhuang.github.io/toMonolopy_GoldMilestone/"
   }
 ];
+
+const nestoriaCopy = {
+  en: {
+    label: "Nestoria / Mythic Online RPG",
+    title: "A floating island frontier rebuilt after a divine war.",
+    body:
+      "Nestoria is a 2D / 2.5D online RPG set in a frontier territory torn from the continent and lifted into the sky after the war between the Aesir and Vanir gods. As the descendant of a fallen frontier lord, the player leads survivors, restores production, explores unstable ruins, and uncovers mythological rifts connecting different worlds.",
+    future:
+      "The project combines persistent progression, town reconstruction, real-time RPG systems, and an expandable content structure for future multiplayer and mythological events.",
+    cta: "Enter World"
+  },
+  zh: {
+    label: "Nestoria / 神話線上 RPG",
+    title: "一座在神戰後被重建的浮空邊境島嶼。",
+    body:
+      "Nestoria 是一款 2D / 2.5D 線上 RPG，故事發生在 Aesir 與 Vanir 神戰之後。一片邊境領地被災變撕離大陸並升上天空，玩家作為殞落邊境領主的後裔，必須帶領倖存者、恢復生產、探索不穩定遺跡，並揭開連接不同世界的神話裂隙。",
+    future:
+      "此專案結合持久化角色成長、城鎮重建、即時 RPG 系統，以及可支援未來多人遊玩與神話事件擴充的內容架構。",
+    cta: "進入世界"
+  }
+};
+
+const nestoriaSystems = [
+  "Player progression",
+  "Inventory",
+  "Combat logic",
+  "NPC interaction",
+  "Map exploration",
+  "Town reconstruction",
+  "Online world synchronization"
+];
+
+const nestoriaStack = ["React", "Phaser", "TypeScript", "Golang", "PostgreSQL", "Redis"];
 
 const publications = [
   {
@@ -328,6 +373,7 @@ function App() {
   const [language, setLanguage] = useState<"en" | "zh">("en");
   const isZh = language === "zh";
   const t = ui[language];
+  const nestoria = nestoriaCopy[language];
   const localizedProjects = projects.map((project) => ({
     ...project,
     category: isZh ? project.categoryZh ?? project.category : project.category,
@@ -462,6 +508,80 @@ function App() {
             />
           ))}
         </div>
+
+        <motion.article
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          className="mt-6 grid overflow-hidden border border-white/12 bg-white/[0.035] backdrop-blur-2xl lg:grid-cols-[1.05fr_.95fr]"
+        >
+          <div className="p-5 sm:p-7">
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-rec-blue">
+              {nestoria.label}
+            </p>
+            <h3 className="mt-5 max-w-4xl text-3xl font-black uppercase leading-none text-white md:text-5xl">
+              {nestoria.title}
+            </h3>
+            <p className="mt-6 max-w-3xl text-sm leading-7 text-rec-pearl md:text-base md:leading-8">
+              {nestoria.body}
+            </p>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-rec-steel md:text-base md:leading-8">
+              {nestoria.future}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {nestoriaStack.map((item) => (
+                <span
+                  key={item}
+                  className="border border-white/12 bg-black/30 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-rec-pearl"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+            <a
+              href="https://nestoria.recovian.ai/world"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 inline-flex items-center justify-center gap-3 border border-rec-bone bg-rec-bone px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-rec-black transition hover:bg-white"
+            >
+              {nestoria.cta}
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+          <div className="relative min-h-[430px] border-t border-white/10 bg-black/30 p-5 lg:border-l lg:border-t-0">
+            <div className="absolute inset-0 bg-fine-grid bg-[size:44px_44px] opacity-30" />
+            <div className="absolute left-1/2 top-12 h-48 w-48 -translate-x-1/2 rounded-full bg-rec-violet/20 blur-3xl" />
+            <div className="relative flex h-full min-h-[390px] flex-col justify-between">
+              <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
+                <span>World Node</span>
+                <span>N-01</span>
+              </div>
+              <div className="mx-auto w-full max-w-md">
+                <div className="relative mx-auto h-48 w-72 sm:w-80">
+                  <div className="absolute left-8 top-8 h-28 w-56 skew-x-[-14deg] border border-rec-blue/50 bg-[linear-gradient(135deg,rgba(88,166,255,.26),rgba(255,255,255,.06)_42%,rgba(141,107,255,.18))] shadow-glow" />
+                  <div className="absolute left-16 top-2 h-16 w-36 border border-white/18 bg-white/[0.08] backdrop-blur-xl" />
+                  <div className="absolute left-24 top-16 h-10 w-10 border border-rec-bone/70 bg-rec-bone/80" />
+                  <div className="absolute left-48 top-14 h-14 w-16 border border-rec-violet/60 bg-rec-violet/20" />
+                  <div className="absolute left-5 top-24 h-16 w-20 border border-rec-blue/50 bg-rec-blue/15" />
+                  <div className="absolute bottom-0 left-20 h-16 w-40 skew-x-[18deg] border border-white/12 bg-black/60" />
+                  <div className="absolute bottom-[-18px] left-28 h-10 w-28 rounded-full bg-rec-blue/20 blur-xl" />
+                </div>
+                <div className="mt-8 grid grid-cols-2 gap-2">
+                  {nestoriaSystems.map((item) => (
+                    <div key={item} className="border border-white/10 bg-black/35 px-3 py-3">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-rec-pearl">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-rec-steel">
+                Floating Island / Persistent State / Mythic Rifts
+              </div>
+            </div>
+          </div>
+        </motion.article>
 
         <AnimatePresence initial={false}>
           {isNchcOpen ? (
